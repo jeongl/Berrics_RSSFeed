@@ -21173,7 +21173,7 @@ var Mycomponent = React.createClass({
   displayName: "Mycomponent",
 
   clickHandler: function clickHandler() {
-    Req.get("http://localhost:8080/getFeed").end(function (err, res) {
+    Req.get("http://localhost:8000/getFeed").end(function (err, res) {
       if (err) throw err;
       console.log("res: ", res);
     });

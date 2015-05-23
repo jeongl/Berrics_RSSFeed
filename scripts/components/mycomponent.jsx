@@ -5,7 +5,7 @@ import pack from '../../package.json'
 let Mycomponent = React.createClass({
 
   clickHandler: function(){
-    Req.get('http://localhost:8080/getFeed').end(function(err, res){
+    Req.get('http://localhost:8000/getFeed').end(function(err, res){
       if (err) throw err;
       console.log('res: ', res);
     });
