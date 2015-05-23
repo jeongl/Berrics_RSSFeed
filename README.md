@@ -1,2 +1,2 @@
 # Berrics_RSSFeed
-Pulls and display RSS feed from theberrics.com
+Pulls and displays an RSS feed from one of my favorie sites - theberrics.com
