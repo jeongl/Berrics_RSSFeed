@@ -2,6 +2,8 @@ var express = require('express');
 var app = express();
 var feed = require("feed-read");
 
+app.set('trust proxy', true);
+
 app.get('/getFeed', function (req, res) {
   feed("http://theberrics.com/video/rss/", function(err, articles) {
     if (err) throw err;
@@ -21,7 +23,7 @@ app.get('/getFeed', function (req, res) {
 
 
 
-var server = app.listen(3000, function () {
+var server = app.listen(8000, function () {
   var host = server.address().address;
   var port = server.address().port;
   console.log('Example app listening at http://%s:%s', host, port);

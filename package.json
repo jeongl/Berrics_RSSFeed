@@ -26,7 +26,8 @@
   "homepage": "https://github.com/Granze/react-starterify",
   "dependencies": {
     "express": "^4.12.4",
-    "feedparser": "^1.1.0",    
+    "feed-read": "0.0.1",
+    "feedparser": "^1.1.0",
     "react": "^0.13.0",
     "superagent": "^1.0.0"
   },

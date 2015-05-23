@@ -31,7 +31,7 @@ gulp.task('clean', function(cb) {
 gulp.task('browserSync', function() {
   browserSync({
     server: {
-      baseDir: './'
+      baseDir: './',
     }
   });
 });
