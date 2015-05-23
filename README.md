@@ -3,4 +3,4 @@
 
 Pulls and displays an RSS feed from one of my favorie sites - http://theberrics.com
 
-I'm using this boilerplate - https://github.com/jeongl/react-starterify
+I'm using this boilerplate - https://github.com/Granze/react-starterify
