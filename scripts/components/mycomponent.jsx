@@ -4,11 +4,29 @@ import pack from '../../package.json'
 
 let Mycomponent = React.createClass({
 
-  clickHandler: function(){
+  getInitialState: function(){
+    return{
+      data: []
+    }
+  },
+
+  componentDidMount: function(){
     Req.get('http://localhost:8000/getFeed').end(function(err, res){
       if (err) throw err;
-      console.log('res: ', res);
-    });
+      // console.log('this.state.data: ', this.state.data);
+      this.setState({
+        data: res.body
+      })
+    }.bind(this));
+
+  },
+
+  clickHandler: function(){
+    // Req.get('http://localhost:8000/getFeed').end(function(err, res){
+    //   if (err) throw err;
+    //   this.state.data = res.body;
+    //   console.log('this.state.data: ', this.state.data);
+    // }.bind(this));
   },
 
   render: function() {
@@ -17,24 +35,35 @@ let Mycomponent = React.createClass({
 
     deps = Object.keys(pack.devDependencies).map((dep, i) => <li key={i}>{dep}</li>);
 
-    return (
+    return(
       <div>
-        <h1 className="Mycomponent" >Welcome to &#9883; React Starterify {version} </h1>
-        <p>Powered by:</p>
-        <ul>
-          {deps}
-        </ul>
-        <Main />
+        {this.state.data.map(function(item){
+          return <FeedBoxes title={item.title} link={item.link} />
+        })}
       </div>
     )
+     // <div>
+      //   <h1 className="Mycomponent" onClick={this.clickHandler}>Welcome to &#9883; React Starterify {version} </h1>
+      //   <p>Powered by:</p>
+      //   <ul>
+      //     {deps}
+      //   </ul>
+      //   <Main />
+      // </div>
+    
   }
 });
 
-let Main = React.createClass({
+var FeedBoxes = React.createClass({
 
   render: function(){
+    console.log('this.props: ', this.props);
     return(
-      <h1>Hello, World</h1>
+      <div className="boxes">
+        <div className="leftPillar"></div>
+        <h4>{this.props.title}</h4>
+        <p>{this.props.link}</p>
+      </div>
     )
   }
 

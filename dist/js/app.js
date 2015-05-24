@@ -9,7 +9,7 @@ var MyComponent = _interopRequire(require("./components/mycomponent.jsx"));
 
 window.React = React;
 
-// React.render(<MyComponent />, document.getElementById('content'));
+React.render(React.createElement(MyComponent, null), document.getElementById("content"));
 
 },{"./components/mycomponent.jsx":162,"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
@@ -21172,12 +21172,23 @@ var pack = _interopRequire(require("../../package.json"));
 var Mycomponent = React.createClass({
   displayName: "Mycomponent",
 
-  clickHandler: function clickHandler() {
-    Req.get("http://localhost:8000/getFeed").end(function (err, res) {
-      if (err) throw err;
-      console.log("res: ", res);
-    });
+  getInitialState: function getInitialState() {
+    return {
+      data: []
+    };
   },
+
+  componentDidMount: function componentDidMount() {
+    Req.get("http://localhost:8000/getFeed").end((function (err, res) {
+      if (err) throw err;
+      // console.log('this.state.data: ', this.state.data);
+      this.setState({
+        data: res.body
+      });
+    }).bind(this));
+  },
+
+  clickHandler: function clickHandler() {},
 
   render: function render() {
     var version = pack.version,
@@ -21194,41 +21205,51 @@ var Mycomponent = React.createClass({
     return React.createElement(
       "div",
       null,
+      this.state.data.map(function (item) {
+        return React.createElement(FeedBoxes, { title: item.title, link: item.link });
+      })
+    );
+    // <div>
+    //   <h1 className="Mycomponent" onClick={this.clickHandler}>Welcome to &#9883; React Starterify {version} </h1>
+    //   <p>Powered by:</p>
+    //   <ul>
+    //     {deps}
+    //   </ul>
+    //   <Main />
+    // </div>
+  }
+});
+
+var FeedBoxes = React.createClass({
+  displayName: "FeedBoxes",
+
+  render: function render() {
+    console.log("this.props: ", this.props);
+    return React.createElement(
+      "div",
+      { className: "boxes" },
+      React.createElement("div", { className: "leftPillar" }),
       React.createElement(
-        "h1",
-        { className: "Mycomponent" },
-        "Welcome to ⚛ React Starterify ",
-        version,
-        " "
+        "h4",
+        null,
+        this.props.title
       ),
       React.createElement(
         "p",
         null,
-        "Powered by:"
-      ),
-      React.createElement(
-        "ul",
-        null,
-        deps
-      ),
-      React.createElement(Main, null)
-    );
-  }
-});
-
-var Main = React.createClass({
-  displayName: "Main",
-
-  render: function render() {
-    return React.createElement(
-      "h1",
-      null,
-      "Hello, World"
+        this.props.link
+      )
     );
   }
 
 });
 
 module.exports = Mycomponent;
+
+// Req.get('http://localhost:8000/getFeed').end(function(err, res){
+//   if (err) throw err;
+//   this.state.data = res.body;
+//   console.log('this.state.data: ', this.state.data);
+// }.bind(this));
 
 },{"../../package.json":161,"react":157,"superagent":158}]},{},[1]);

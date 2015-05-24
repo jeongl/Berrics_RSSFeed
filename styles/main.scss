@@ -2,6 +2,26 @@
   box-sizing: border-box;
 }
 
-.boxes{
-	border: 10px solid;	
+.boxes {
+	border: 1px solid #cfd8dc;	
+	width: 25%;
+	height: 150px;
+	margin: 2%;
+}
+
+.boxes :first-child {
+	float:left;
+	height: 149px;
+	border: solid 1px ;
+	margin-left:1px;
+}
+
+.boxes :first-child + h4{
+	margin: 5px;
+	border-bottom: 5px solid;
+	color:#263238;
+}
+.boxes :first-child + h4 + p{
+	margin: 10px;
+	color:#546e7a;
 }
