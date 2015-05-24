@@ -42,22 +42,12 @@ let Mycomponent = React.createClass({
         })}
       </div>
     )
-     // <div>
-      //   <h1 className="Mycomponent" onClick={this.clickHandler}>Welcome to &#9883; React Starterify {version} </h1>
-      //   <p>Powered by:</p>
-      //   <ul>
-      //     {deps}
-      //   </ul>
-      //   <Main />
-      // </div>
-    
   }
 });
 
 var FeedBoxes = React.createClass({
 
   render: function(){
-    console.log('this.props: ', this.props);
     return(
       <div className="boxes">
         <div className="leftPillar"></div>

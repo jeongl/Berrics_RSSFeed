@@ -21209,14 +21209,6 @@ var Mycomponent = React.createClass({
         return React.createElement(FeedBoxes, { title: item.title, link: item.link });
       })
     );
-    // <div>
-    //   <h1 className="Mycomponent" onClick={this.clickHandler}>Welcome to &#9883; React Starterify {version} </h1>
-    //   <p>Powered by:</p>
-    //   <ul>
-    //     {deps}
-    //   </ul>
-    //   <Main />
-    // </div>
   }
 });
 
@@ -21224,7 +21216,6 @@ var FeedBoxes = React.createClass({
   displayName: "FeedBoxes",
 
   render: function render() {
-    console.log("this.props: ", this.props);
     return React.createElement(
       "div",
       { className: "boxes" },
