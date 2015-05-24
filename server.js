@@ -10,6 +10,8 @@ app.all('*', function (req, res, next) {
   next() 
 })
 
+//document.querySelectorAll('[data-video-configuration]')[0].getAttribute('data-video-configuration')
+
 app.get('/getFeed', function (req, res) {
   console.log('enters this route: ');
   feed("http://theberrics.com/video/rss/", function(err, articles) {
@@ -26,9 +28,6 @@ app.get('/getFeed', function (req, res) {
     res.jsonp(articles );
   });
 });
-
-
-
 
 var server = app.listen(8000, function () {
   var host = server.address().address;

@@ -9,7 +9,7 @@ var MyComponent = _interopRequire(require("./components/mycomponent.jsx"));
 
 window.React = React;
 
-React.render(React.createElement(MyComponent, null), document.getElementById("content"));
+// React.render(<MyComponent />, document.getElementById('content'));
 
 },{"./components/mycomponent.jsx":162,"react":157}],2:[function(require,module,exports){
 // shim for using process in browser
@@ -21196,7 +21196,7 @@ var Mycomponent = React.createClass({
       null,
       React.createElement(
         "h1",
-        { className: "Mycomponent", onClick: this.clickHandler },
+        { className: "Mycomponent" },
         "Welcome to ⚛ React Starterify ",
         version,
         " "

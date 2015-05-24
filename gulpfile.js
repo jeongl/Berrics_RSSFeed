@@ -17,6 +17,7 @@ var gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps'),
     reload = browserSync.reload,
     p = {
+      html: './',
       jsx: './scripts/app.jsx',
       scss: 'styles/main.scss',
       bundle: 'app.js',
@@ -31,9 +32,10 @@ gulp.task('clean', function(cb) {
 gulp.task('browserSync', function() {
   browserSync({
     server: {
-      baseDir: './',
+      baseDir: './'
     }
   });
+  gulp.watch("*.html", browserSync.reload);
 });
 
 gulp.task('watchify', function() {
@@ -75,6 +77,8 @@ gulp.task('styles', function() {
     .pipe(gulp.dest(p.distCss))
     .pipe(reload({stream: true}));
 });
+
+gulp.task('js-watch', ['js'], browserSync.reload);
 
 gulp.task('watchTask', function() {
   gulp.watch(p.scss, ['styles']);

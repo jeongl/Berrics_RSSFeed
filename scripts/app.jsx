@@ -3,4 +3,4 @@ import MyComponent from './components/mycomponent.jsx'
 
 window.React = React;
 
-React.render(<MyComponent />, document.getElementById('content'));
+// React.render(<MyComponent />, document.getElementById('content'));

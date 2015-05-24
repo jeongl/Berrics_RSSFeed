@@ -19,7 +19,7 @@ let Mycomponent = React.createClass({
 
     return (
       <div>
-        <h1 className="Mycomponent" onClick={this.clickHandler} >Welcome to &#9883; React Starterify {version} </h1>
+        <h1 className="Mycomponent" >Welcome to &#9883; React Starterify {version} </h1>
         <p>Powered by:</p>
         <ul>
           {deps}
