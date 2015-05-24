@@ -2,9 +2,18 @@
   box-sizing: border-box;
 }
 
+header {
+	font-size: 25px;
+	padding: 50px;
+}
+
+#content {
+	width: 25%;
+}
+
 .boxes {
 	border: 1px solid #cfd8dc;	
-	width: 25%;
+	/*width: 25%;*/
 	height: 150px;
 	margin: 2%;
 }
@@ -21,7 +30,16 @@
 	border-bottom: 5px solid;
 	color:#263238;
 }
+
 .boxes :first-child + h4 + p{
 	margin: 10px;
 	color:#546e7a;
+}
+
+#mainVideo {
+	position: fixed;
+	float: left;
+	/*border: 1px solid;*/
+	padding-bottom: 250px;
+	margin-left: 5%;
 }

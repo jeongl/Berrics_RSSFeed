@@ -21202,9 +21202,14 @@ var Mycomponent = React.createClass({
       );
     });
 
+    var style = {
+      float: "left",
+      width: "100%"
+    };
+
     return React.createElement(
       "div",
-      null,
+      { style: style },
       this.state.data.map(function (item) {
         return React.createElement(FeedBoxes, { title: item.title, link: item.link });
       })

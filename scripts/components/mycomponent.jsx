@@ -35,8 +35,13 @@ let Mycomponent = React.createClass({
 
     deps = Object.keys(pack.devDependencies).map((dep, i) => <li key={i}>{dep}</li>);
 
+    let style ={
+      float: 'left',
+      width: '100%'
+    };
+
     return(
-      <div>
+      <div style={style}>
         {this.state.data.map(function(item){
           return <FeedBoxes title={item.title} link={item.link} />
         })}
