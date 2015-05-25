@@ -15,9 +15,9 @@ let Mycomponent = React.createClass({
   },
 
   componentDidMount: function(){
-    Req.get('http://localhost:8000/getFeed').end(function(err, res){
+    Req.get('http://localhost:8052/getFeed').end(function(err, res){
       if (err) throw err;
-      
+
       this.setState({
         data: res.body
       });

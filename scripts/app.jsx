@@ -13,7 +13,7 @@ var Main = React.createClass({
 
 	getVideoLink: function(link, fn){
 
-    Req.get('http://localhost:8000/getVideoLink').query({videoPage: link}).end(function(err, res){
+    Req.get('http://localhost:8052/getVideoLink').query({videoPage: link}).end(function(err, res){
       if (err) throw err;
 
       var link = res.text;
@@ -25,12 +25,13 @@ var Main = React.createClass({
 
 	changeVideo: function(param){
 		// alert(JSON.stringify(param, null, 2)  );
+		var videoEl = document.getElementById('mainVideo');
 
-		document.getElementById('mainVideo').pause();
+		videoEl.pause();
 
 		this.getVideoLink(param.link, function(link){
-			document.getElementById('mainVideo').setAttribute('src', link);
-			document.getElementById('mainVideo').load();
+			videoEl.setAttribute('src', link);
+			videoEl.load();
 		})
 
 	},
