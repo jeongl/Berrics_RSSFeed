@@ -21,8 +21,8 @@ var gulp = require('gulp'),
       jsx: './scripts/app.jsx',
       scss: 'styles/main.scss',
       bundle: 'app.js',
-      distJs: 'dist/js',
-      distCss: 'dist/css'
+      distJs: 'public/dist/js',
+      distCss: 'public/dist/css'
     };
 
 gulp.task('clean', function(cb) {

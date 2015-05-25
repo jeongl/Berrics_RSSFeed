@@ -6,13 +6,14 @@ var $ = require('cheerio');
 
 app.set('trust proxy', true);
 
-app.use(express.static('./'));
-
 app.all('*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next() 
 })
+
+app.use(express.static('public'));
+
 
 //document.querySelectorAll('[data-video-configuration]')[0].getAttribute('data-video-configuration')
 
