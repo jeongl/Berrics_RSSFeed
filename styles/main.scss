@@ -2,13 +2,24 @@
   box-sizing: border-box;
 }
 
-header {
+#header {
+	background-color: rgba(#b0bec5, .8);
+	position: fixed;
+	width: 100%;
+	padding: 0px;
 	font-size: 25px;
-	padding: 50px;
+	padding: 30px;
 }
 
-#content {
-	width: 25%;
+body {
+	margin: 0px;
+	background-color: #eceff1;
+}
+
+#main,#content {
+	margin-top: 5%;
+	float:left;
+	width: 50%;
 }
 
 .boxes {
@@ -17,6 +28,17 @@ header {
 	/*width: 25%;*/
 	height: 150px;
 	margin: 2%;
+	background-color: #FFF;
+	border-radius: 5px;
+}
+
+.boxes:hover {
+    background-color: #eceff1;
+    -webkit-transition: background-color 200ms linear;
+    -moz-transition: background-color 200ms linear;
+    -o-transition: background-color 200ms linear;
+    -ms-transition: background-color 200ms linear;
+    transition: background-color 200ms linear;
 }
 
 .boxes :first-child {
@@ -38,6 +60,10 @@ header {
 }
 
 #mainVideo {
+	border-radius: 5px;
+	background-color: rgba(#cfd8dc, .15);
+	padding-left: 20px;
+	padding-right: 20px;
 	position: fixed;
 	float: left;
 	/*border: 1px solid;*/
