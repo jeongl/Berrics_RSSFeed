@@ -2,21 +2,26 @@ import React from 'react'
 import Req from 'superagent'
 import pack from '../../package.json'
 
+window.req = Req;
+
 let Mycomponent = React.createClass({
 
   getInitialState: function(){
     return{
-      data: []
+      data: [
+        {text: '', link: 'Fetching your data...'}
+      ]
     }
   },
 
   componentDidMount: function(){
     Req.get('http://localhost:8000/getFeed').end(function(err, res){
       if (err) throw err;
-      // console.log('this.state.data: ', this.state.data);
+      
       this.setState({
         data: res.body
-      })
+      });
+
     }.bind(this));
 
   },
@@ -40,10 +45,13 @@ let Mycomponent = React.createClass({
       width: '100%'
     };
 
+    var self = this;
+
     return(
       <div style={style}>
         {this.state.data.map(function(item){
-          return <FeedBoxes title={item.title} link={item.link} />
+          console.log('this.props: ', self.props);
+          return <FeedBoxes title={item.title} link={item.link} changeVideo={self.props.changeVideo} />
         })}
       </div>
     )
@@ -52,9 +60,13 @@ let Mycomponent = React.createClass({
 
 var FeedBoxes = React.createClass({
 
+  changeVideo: function(){
+    this.props.changeVideo(this.props);
+  },
+
   render: function(){
     return(
-      <div className="boxes">
+      <div className="boxes"  onClick={this.changeVideo} >
         <div className="leftPillar"></div>
         <h4>{this.props.title}</h4>
         <p>{this.props.link}</p>

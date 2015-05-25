@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var feed = require("feed-read");
+var Req = require('superagent');
+var $ = require('cheerio');
 
 app.set('trust proxy', true);
 
@@ -27,6 +29,19 @@ app.get('/getFeed', function (req, res) {
     // 
     res.jsonp(articles );
   });
+});
+
+app.get('/getVideoLink', function(req, res){
+  Req.get(req.query.videoPage).end(function(err, response){
+    //This link is for the 1080p verision
+    try {
+      var linkData = link = JSON.parse($(response.text).
+        find('[data-video-configuration]').attr('data-video-configuration'))
+      var link = linkData.sources.file || linkData.sources[2].file || linkData.sources[1].file || linkData.sources[0].file
+      res.send(link );      
+    } catch (e){res.send('error')}
+  })
+
 });
 
 var server = app.listen(8000, function () {
