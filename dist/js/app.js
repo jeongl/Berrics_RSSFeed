@@ -7,56 +7,15 @@ var React = _interopRequire(require("react"));
 
 var Req = _interopRequire(require("superagent"));
 
-var MyComponent = _interopRequire(require("./components/mycomponent.jsx"));
+// import MyComponent from './components/mycomponent.jsx'
 
-var Video = _interopRequire(require("./components/video.jsx"));
+var test = _interopRequire(require("./components/exports.js"));
 
 window.React = React;
 
-var Main = React.createClass({
-	displayName: "Main",
+console.log("Test: ", test());
 
-	getInitialState: function getInitialState() {
-		return { link: null };
-	},
-
-	getVideoLink: function getVideoLink(link, fn) {
-
-		Req.get("http://localhost:8052/getVideoLink").query({ videoPage: link }).end((function (err, res) {
-			if (err) throw err;
-
-			var link = res.text;
-			fn(link);
-		}).bind(this));
-	},
-
-	changeVideo: function changeVideo(param) {
-		// alert(JSON.stringify(param, null, 2)  );
-		var videoEl = document.getElementById("mainVideo");
-
-		videoEl.pause();
-
-		this.getVideoLink(param.link, function (link) {
-			videoEl.setAttribute("src", link);
-			videoEl.load();
-		});
-	},
-
-	render: function render() {
-		return React.createElement(
-			"div",
-			null,
-			React.createElement(MyComponent, { changeVideo: this.changeVideo }),
-			React.createElement(Video, { link: this.state.link })
-		);
-	}
-
-});
-
-// React.render(<MyComponent />, document.getElementById('content'));
-React.render(React.createElement(Main, null), document.getElementById("content"));
-
-},{"./components/mycomponent.jsx":162,"./components/video.jsx":163,"react":157,"superagent":158}],2:[function(require,module,exports){
+},{"./components/exports.js":161,"react":157,"superagent":158}],2:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -21151,182 +21110,12 @@ module.exports = function(arr, fn, initial){
   return curr;
 };
 },{}],161:[function(require,module,exports){
-module.exports={
-  "name": "react-starterify",
-  "version": "0.0.9",
-  "description": "React JS application skeleton using Browserify and other awesome tools",
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Granze/react-starterify"
-  },
-  "keywords": [
-    "gulp",
-    "react",
-    "browserify",
-    "seed",
-    "boilerplate",
-    "kickstarter",
-    "ES6",
-    "6to5",
-    "babel"
-  ],
-  "author": "Maurizio Mangione",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Granze/react-starterify/issues"
-  },
-  "homepage": "https://github.com/Granze/react-starterify",
-  "dependencies": {
-    "cheerio": "^0.19.0",
-    "express": "^4.12.4",
-    "feed-read": "0.0.1",
-    "feedparser": "^1.1.0",
-    "react": "^0.13.0",
-    "superagent": "^1.2.0"
-  },
-  "devDependencies": {
-    "babelify": "^5.0.4",
-    "browser-sync": "^2.2.3",
-    "browserify": "^9.0.3",
-    "del": "^1.1.1",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "2.1.0",
-    "gulp-changed": "^1.2.1",
-    "gulp-csso": "^1.0.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-sass": "^1.3.3",
-    "gulp-sourcemaps": "^1.5.0",
-    "gulp-uglify": "^1.1.0",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^2.4.0"
-  }
+"use strict";
+
+module.exports = test;
+
+function test() {
+	alert("this instead: ");
 }
 
-},{}],162:[function(require,module,exports){
-"use strict";
-
-var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-
-var React = _interopRequire(require("react"));
-
-var Req = _interopRequire(require("superagent"));
-
-var pack = _interopRequire(require("../../package.json"));
-
-window.req = Req;
-
-var Mycomponent = React.createClass({
-  displayName: "Mycomponent",
-
-  getInitialState: function getInitialState() {
-    return {
-      data: [{ text: "", link: "Fetching your data..." }]
-    };
-  },
-
-  componentDidMount: function componentDidMount() {
-    Req.get("http://localhost:8052/getFeed").end((function (err, res) {
-      if (err) throw err;
-
-      this.setState({
-        data: res.body
-      });
-    }).bind(this));
-  },
-
-  clickHandler: function clickHandler() {},
-
-  render: function render() {
-    var version = pack.version,
-        deps = undefined;
-
-    deps = Object.keys(pack.devDependencies).map(function (dep, i) {
-      return React.createElement(
-        "li",
-        { key: i },
-        dep
-      );
-    });
-
-    var style = {
-      float: "left",
-      width: "100%"
-    };
-
-    var self = this;
-
-    return React.createElement(
-      "div",
-      { style: style },
-      this.state.data.map(function (item) {
-        console.log("this.props: ", self.props);
-        return React.createElement(FeedBoxes, { title: item.title, link: item.link, changeVideo: self.props.changeVideo });
-      })
-    );
-  }
-});
-
-var FeedBoxes = React.createClass({
-  displayName: "FeedBoxes",
-
-  changeVideo: function changeVideo() {
-    this.props.changeVideo(this.props);
-  },
-
-  render: function render() {
-    return React.createElement(
-      "div",
-      { className: "boxes", onClick: this.changeVideo },
-      React.createElement("div", { className: "leftPillar" }),
-      React.createElement(
-        "h4",
-        null,
-        this.props.title
-      ),
-      React.createElement(
-        "p",
-        null,
-        this.props.link
-      )
-    );
-  }
-
-});
-
-module.exports = Mycomponent;
-
-// Req.get('http://localhost:8000/getFeed').end(function(err, res){
-//   if (err) throw err;
-//   this.state.data = res.body;
-//   console.log('this.state.data: ', this.state.data);
-// }.bind(this));
-
-},{"../../package.json":161,"react":157,"superagent":158}],163:[function(require,module,exports){
-"use strict";
-
-var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["default"] : obj; };
-
-var React = _interopRequire(require("react"));
-
-var Req = _interopRequire(require("superagent"));
-
-var pack = _interopRequire(require("../../package.json"));
-
-var Video = React.createClass({
-	displayName: "Video",
-
-	render: function render() {
-		console.log("this.props.link", this.props.link);
-		return React.createElement(
-			"video",
-			{ id: "mainVideo", width: "750", height: "750", controls: true },
-			React.createElement("source", { src: this.props.link, type: "video/mp4" })
-		);
-	}
-});
-
-module.exports = Video;
-
-},{"../../package.json":161,"react":157,"superagent":158}]},{},[1]);
+},{}]},{},[1]);
