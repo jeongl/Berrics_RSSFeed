@@ -22,7 +22,7 @@ var Main = React.createClass({
 
 	getVideoLink: function getVideoLink(link, fn) {
 
-		Req.get("http://localhost:8052/getVideoLink").query({ videoPage: link }).end((function (err, res) {
+		Req.get("http://jlim.me:8052/getVideoLink").query({ videoPage: link }).end((function (err, res) {
 			if (err) throw err;
 
 			var link = res.text;
@@ -21227,7 +21227,7 @@ var Mycomponent = React.createClass({
   },
 
   componentDidMount: function componentDidMount() {
-    Req.get("http://localhost:8052/getFeed").end((function (err, res) {
+    Req.get("http://jlim.me:8052/getFeed").end((function (err, res) {
       if (err) throw err;
 
       this.setState({
