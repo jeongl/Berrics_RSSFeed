@@ -12,6 +12,9 @@ app.all('*', function (req, res, next) {
   next() 
 })
 
+app.use(express.static('./'));
+app.use(express.static('dist'));
+
 //document.querySelectorAll('[data-video-configuration]')[0].getAttribute('data-video-configuration')
 
 app.get('/getFeed', function (req, res) {
