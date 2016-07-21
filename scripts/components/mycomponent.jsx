@@ -35,11 +35,6 @@ let Mycomponent = React.createClass({
   },
 
   render: function() {
-    let version = pack.version,
-        deps;
-
-    deps = Object.keys(pack.devDependencies).map((dep, i) => <li key={i}>{dep}</li>);
-
     let style ={
       float: 'left',
       width: '100%'

@@ -45,7 +45,6 @@ var Main = React.createClass({
 		)
 	}
 
-})
+});
 
-// React.render(<MyComponent />, document.getElementById('content'));
 React.render(<Main />, document.getElementById('content'));
